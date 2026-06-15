@@ -1,429 +1,2376 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shakir Sadiq — Data Scientist, Engineer & Developer</title>
+  <meta name="description" content="Portfolio of Shakir Sadiq — Data Scientist, Data Engineer & Developer with 5+ years of experience in Python, Golang, ML/AI, data pipelines, and scalable solutions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8F4EF;
+      --bg-alt: #EFEAE3;
+      --surface: #E5DFD7;
+      --text: #1A1714;
+      --text-2: #5C5650;
+      --text-3: #918B84;
+      --accent: #C7522D;
+      --accent-hover: #A8421F;
+      --accent-light: #FADDD2;
+      --radius: 4px;
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-	<!-- Primary Meta Tags -->
-	<title>Shakir Sadiq</title>
-	<meta name="title" content="Shakir Sadiq - Software Engineer">
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-	<!-- site favicon link -->
-	<link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-	<link rel="manifest" href="img/favicon/manifest.json">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
-	<!-- external CSS link -->
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/style.css">
-	<style>
-	.stats {
-            text-align: center;
-        }
-        .number {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .label {
-            font-size: 18px;
-        }
-	</style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.locked { overflow: hidden; }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    ::selection { background: var(--accent-light); color: var(--accent-hover); }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+    }
+
+    /* ───── NOISE OVERLAY ───── */
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ───── PRELOADER ───── */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.9s var(--ease-out-expo);
+    }
+
+    .preloader.done { transform: translateY(-100%); pointer-events: none; }
+
+    .preloader-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 6vw, 5rem);
+      letter-spacing: -0.02em;
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    .preloader-name span {
+      display: inline-block;
+      transform: translateY(110%);
+      animation: preloaderReveal 0.7s var(--ease-out-quart) forwards;
+    }
+
+    .preloader-name span:nth-child(2) { animation-delay: 0.1s; }
+
+    .preloader-bar {
+      width: 60px;
+      height: 2px;
+      background: var(--surface);
+      margin-top: 1.5rem;
+      border-radius: 1px;
+      overflow: hidden;
+    }
+
+    .preloader-bar::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      transform-origin: left;
+      animation: barFill 1.2s var(--ease-out-expo) 0.3s forwards;
+      transform: scaleX(0);
+    }
+
+    @keyframes preloaderReveal {
+      to { transform: translateY(0); }
+    }
+    @keyframes barFill {
+      to { transform: scaleX(1); }
+    }
+
+    /* ───── CURSOR ───── */
+    .cursor-dot, .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      will-change: transform;
+    }
+
+    .cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-ring {
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--accent);
+      opacity: 0.5;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s var(--ease-out-quart), height 0.3s var(--ease-out-quart), opacity 0.3s;
+    }
+
+    .cursor-ring.hovering {
+      width: 56px;
+      height: 56px;
+      opacity: 0.25;
+    }
+
+    @media (pointer: coarse) {
+      .cursor-dot, .cursor-ring { display: none; }
+    }
+
+    /* ───── SCROLL PROGRESS ───── */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: var(--accent);
+      z-index: 10001;
+      transform-origin: left;
+      transform: scaleX(0);
+      will-change: transform;
+    }
+
+    /* ───── NAVIGATION ───── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+
+    .nav.scrolled {
+      background: rgba(248, 244, 239, 0.88);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+    }
+
+    .nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-2);
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width 0.3s var(--ease-out-quart);
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-links .nav-resume {
+      padding: 0.45rem 1.1rem;
+      border: 1.5px solid var(--text);
+      border-radius: var(--radius);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s, transform 0.3s var(--ease-out-quart);
+    }
+
+    .nav-links .nav-resume::after { display: none; }
+
+    .nav-links .nav-resume:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 1px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ───── HERO ───── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+      opacity: 0.4;
+      top: 10%;
+      right: -10%;
+      pointer-events: none;
+      transition: transform 0.6s ease-out;
+    }
+
+    /* ───── PARTICLE CANVAS ───── */
+    .particle-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+
+    .particle-canvas.active { opacity: 1; }
+
+    /* ───── AURORA ORBS ───── */
+    .aurora-wrap {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .aurora-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0;
+      animation: auroraFade 1.5s var(--ease-out-quart) forwards;
+    }
+
+    .aurora-orb--1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(199, 82, 45, 0.12) 0%, transparent 70%);
+      top: 15%;
+      left: -5%;
+      animation: auroraFloat1 18s ease-in-out infinite alternate, auroraFade 1.5s var(--ease-out-quart) forwards;
+    }
+
+    .aurora-orb--2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(250, 180, 130, 0.1) 0%, transparent 70%);
+      top: 55%;
+      right: -8%;
+      animation: auroraFloat2 22s ease-in-out infinite alternate, auroraFade 1.5s var(--ease-out-quart) 0.3s forwards;
+    }
+
+    .aurora-orb--3 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(199, 82, 45, 0.08) 0%, transparent 70%);
+      bottom: 10%;
+      left: 30%;
+      animation: auroraFloat3 25s ease-in-out infinite alternate, auroraFade 1.5s var(--ease-out-quart) 0.6s forwards;
+    }
+
+    @keyframes auroraFade {
+      to { opacity: 1; }
+    }
+
+    @keyframes auroraFloat1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, -40px) scale(1.15); }
+    }
+
+    @keyframes auroraFloat2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-50px, 30px) scale(1.1); }
+    }
+
+    @keyframes auroraFloat3 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, -50px) scale(1.2); }
+    }
+
+    /* ───── HERO TITLE SHIMMER ───── */
+    .hero-title .accent {
+      position: relative;
+      background: linear-gradient(
+        90deg,
+        var(--accent) 0%,
+        var(--accent) 40%,
+        #E8845C 50%,
+        var(--accent) 60%,
+        var(--accent) 100%
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { background-position: 100% 0; }
+      50% { background-position: -100% 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: clamp(2rem, 6vw, 5rem) 0;
+    }
+
+    .hero-greeting {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-greeting.anim { animation: fadeUp 0.6s var(--ease-out-quart) 1.6s forwards; }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 7.5vw, 7rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .hero-title .line {
+      display: block;
+      overflow: hidden;
+    }
+
+    .hero-title .line-inner {
+      display: inline-block;
+      transform: translateY(110%);
+    }
+
+    .hero-title .line-inner.anim {
+      animation: revealUp 0.85s var(--ease-out-expo) forwards;
+    }
+
+    .hero-title .line:nth-child(1) .line-inner.anim { animation-delay: 1.7s; }
+    .hero-title .line:nth-child(2) .line-inner.anim { animation-delay: 1.85s; }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      color: var(--text-2);
+      max-width: 540px;
+      font-weight: 400;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-subtitle.anim { animation: fadeUp 0.7s var(--ease-out-quart) 2.1s forwards; }
+
+    .hero-bio {
+      font-size: clamp(0.9rem, 1.1vw, 1rem);
+      color: var(--text-3);
+      max-width: 520px;
+      margin-top: 1.25rem;
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-bio.anim { animation: fadeUp 0.7s var(--ease-out-quart) 2.3s forwards; }
+
+    .hero-stats {
+      display: flex;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      margin-top: clamp(2rem, 4vw, 3rem);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-stats.anim { animation: fadeUp 0.7s var(--ease-out-quart) 2.5s forwards; }
+
+    .stat-item { text-align: left; }
+
+    .stat-number {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-3);
+      font-weight: 500;
+      margin-top: 0.15rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: clamp(2rem, 3vw, 2.5rem);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-actions.anim { animation: fadeUp 0.7s var(--ease-out-quart) 2.7s forwards; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.6rem;
+      background: var(--accent);
+      color: #FFF8F5;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s var(--ease-out-quart);
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .btn-primary svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s var(--ease-out-quart);
+    }
+
+    .btn-primary:hover svg { transform: translateX(3px); }
+
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--surface);
+      border-radius: 50%;
+      color: var(--text-2);
+      transition: border-color 0.3s, color 0.3s, transform 0.3s var(--ease-out-quart);
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .social-link svg { width: 18px; height: 18px; }
+
+    @keyframes revealUp {
+      to { transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ───── ABOUT ───── */
+    .about {
+      padding: clamp(5rem, 10vw, 9rem) 0;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      gap: clamp(3rem, 6vw, 5rem);
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: clamp(0.92rem, 1.1vw, 1rem);
+      color: var(--text-2);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-image {
+      width: 100%;
+      aspect-ratio: 3 / 5;
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .about-image-accent {
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      width: 60%;
+      height: 60%;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      z-index: -1;
+    }
+
+    .about-tech {
+      margin-top: 2rem;
+    }
+
+    .about-tech h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem 1rem;
+    }
+
+    .tech-item {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      padding: 0.35rem 0;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .tech-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* ───── MARQUEE ───── */
+    .marquee-section {
+      padding: clamp(2rem, 4vw, 3.5rem) 0;
+      border-top: 1px solid var(--surface);
+      border-bottom: 1px solid var(--surface);
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 40s linear infinite;
+    }
+
+    .marquee-track:hover { animation-play-state: paused; }
+
+    .marquee-item {
+      flex-shrink: 0;
+      padding: 0 clamp(1.5rem, 3vw, 2.5rem);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1rem, 1.8vw, 1.35rem);
+      color: var(--text-3);
+      white-space: nowrap;
+      transition: color 0.3s;
+    }
+
+    .marquee-item:hover { color: var(--accent); }
+
+    .marquee-divider {
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      align-self: center;
+    }
+
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
+    }
+
+    /* ───── PROJECTS ───── */
+    .projects {
+      padding: clamp(5rem, 10vw, 9rem) 0;
+    }
+
+    .section-header {
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 3vw, 2rem);
+      border: 1px solid transparent;
+      transition: border-color 0.4s, box-shadow 0.4s, transform 0.1s;
+      position: relative;
+      will-change: transform;
+    }
+
+    .project-card:hover {
+      border-color: var(--surface);
+      box-shadow: 0 8px 30px rgba(26, 23, 20, 0.06);
+    }
+
+    .project-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .project-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-light);
+      border-radius: var(--radius);
+      color: var(--accent);
+    }
+
+    .project-icon svg { width: 18px; height: 18px; }
+
+    .project-github {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-3);
+      border-radius: 50%;
+      transition: color 0.3s, background 0.3s;
+    }
+
+    .project-github:hover {
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .project-github svg { width: 18px; height: 18px; }
+
+    .project-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .project-card p {
+      font-size: 0.88rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .project-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    /* ───── PROFESSIONAL WORK ───── */
+    .pro-work {
+      padding: 0 0 clamp(5rem, 10vw, 9rem);
+    }
+
+    .pro-work-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    .pro-work-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      letter-spacing: -0.02em;
+    }
+
+    .pro-work-note {
+      font-size: 0.82rem;
+      color: var(--text-3);
+      font-style: italic;
+    }
+
+    .pro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .pro-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 3vw, 2rem);
+      border: 1px solid transparent;
+      border-left: 3px solid var(--accent);
+      transition: border-color 0.4s, box-shadow 0.4s, transform 0.1s;
+      position: relative;
+      will-change: transform;
+    }
+
+    .pro-card:hover {
+      border-color: var(--surface);
+      border-left-color: var(--accent);
+      box-shadow: 0 8px 30px rgba(26, 23, 20, 0.06);
+    }
+
+    .pro-card-role {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .pro-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .pro-card p {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .pro-card-nda {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      color: var(--text-3);
+      margin-top: 0.5rem;
+    }
+
+    .pro-card-nda svg { width: 12px; height: 12px; }
+
+    @media (max-width: 768px) {
+      .pro-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ───── MORE PROJECTS ───── */
+    .more-projects {
+      padding: 0 0 clamp(5rem, 10vw, 9rem);
+    }
+
+    .more-projects-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    .more-projects-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      letter-spacing: -0.02em;
+    }
+
+    .more-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .more-card {
+      padding: clamp(1.25rem, 2vw, 1.5rem);
+      border: 1px solid var(--surface);
+      border-radius: var(--radius);
+      transition: border-color 0.3s, background 0.3s, transform 0.1s;
+      will-change: transform;
+    }
+
+    .more-card:hover {
+      border-color: var(--accent-light);
+      background: var(--bg-alt);
+    }
+
+    .more-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .more-card p {
+      font-size: 0.82rem;
+      color: var(--text-2);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ───── CONTACT ───── */
+    .contact {
+      padding: clamp(5rem, 10vw, 9rem) 0;
+      border-top: 1px solid var(--surface);
+    }
+
+    .contact-heading {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-heading .accent { color: var(--accent); }
+
+    .contact-text {
+      font-size: clamp(0.9rem, 1.1vw, 1rem);
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    .contact-socials {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .contact-luna {
+      margin-top: 2rem;
+      font-size: 0.88rem;
+      color: var(--text-3);
+      font-style: italic;
+    }
+
+    /* ───── FOOTER ───── */
+    .footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--surface);
+    }
+
+    .footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-text {
+      font-size: 0.82rem;
+      color: var(--text-3);
+    }
+
+    .footer-back-top {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-2);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.3s;
+    }
+
+    .footer-back-top:hover { color: var(--accent); }
+
+    .footer-back-top svg { width: 14px; height: 14px; }
+
+    /* ───── LUNA WIDGET ───── */
+    .luna-widget {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 500;
+    }
+
+    .luna-toggle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: none;
+      color: #FFF8F5;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(199, 82, 45, 0.3);
+      transition: transform 0.3s var(--ease-out-quart), box-shadow 0.3s;
+      position: relative;
+      z-index: 2;
+    }
+
+    .luna-toggle:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(199, 82, 45, 0.4);
+    }
+
+    .luna-toggle svg { width: 26px; height: 26px; }
+    .luna-toggle .luna-close { width: 22px; height: 22px; }
+
+    .luna-toggle .luna-close { display: none; }
+    .luna-widget.open .luna-toggle .luna-open { display: none; }
+    .luna-widget.open .luna-toggle .luna-close { display: block; }
+
+    .luna-panel {
+      position: absolute;
+      bottom: 64px;
+      right: 0;
+      width: 340px;
+      max-height: 420px;
+      background: var(--bg);
+      border: 1px solid var(--surface);
+      border-radius: 8px;
+      box-shadow: 0 12px 40px rgba(26, 23, 20, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(12px) scale(0.96);
+      pointer-events: none;
+      transition: opacity 0.3s var(--ease-out-quart), transform 0.3s var(--ease-out-quart);
+    }
+
+    .luna-widget.open .luna-panel {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .luna-header {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--surface);
+    }
+
+    .luna-header-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .luna-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .luna-avatar svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .luna-header h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .luna-header p {
+      font-size: 0.78rem;
+      color: var(--text-3);
+      margin-top: 0.1rem;
+    }
+
+    .luna-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .luna-msg {
+      max-width: 88%;
+      padding: 0.65rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      animation: fadeUp 0.3s var(--ease-out-quart) forwards;
+    }
+
+    .luna-msg.bot {
+      background: var(--bg-alt);
+      color: var(--text-2);
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+    }
+
+    .luna-msg.user {
+      background: var(--accent);
+      color: #FFF8F5;
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+
+    .luna-input-wrap {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid var(--surface);
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .luna-input-wrap input {
+      flex: 1;
+      padding: 0.55rem 0.75rem;
+      background: var(--bg-alt);
+      border: 1px solid var(--surface);
+      border-radius: var(--radius);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .luna-input-wrap input:focus { border-color: var(--accent); }
+
+    .luna-input-wrap button {
+      padding: 0.55rem 0.85rem;
+      background: var(--accent);
+      color: #FFF8F5;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .luna-input-wrap button:hover { background: var(--accent-hover); }
+
+    /* ───── REVEAL ANIMATIONS ───── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s var(--ease-out-quart), transform 0.7s var(--ease-out-quart);
+    }
+
+    .reveal.revealed { opacity: 1; transform: translateY(0); }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ───── REDUCED MOTION ───── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .preloader { display: none; }
+      .hero-greeting, .hero-subtitle, .hero-bio, .hero-stats, .hero-actions { opacity: 1; transform: none; }
+      .hero-title .line-inner { transform: none; }
+      .reveal { opacity: 1; transform: none; }
+      .particle-canvas { display: none; }
+      .aurora-orb { opacity: 0 !important; animation: none !important; }
+      .hero-title .accent { animation: none; background: none; -webkit-text-fill-color: var(--accent); }
+    }
+
+    /* ───── RESPONSIVE ───── */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-image-wrap { order: -1; max-width: 320px; }
+      .tech-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 280px;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 5rem 2rem 2rem;
+        gap: 1.25rem;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.06);
+        transform: translateX(100%);
+        transition: transform 0.4s var(--ease-out-expo);
+      }
+
+      .nav-links.open { transform: translateX(0); }
+
+      .nav-links a { font-size: 1rem; }
+      .nav-toggle { display: flex; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .more-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; }
+
+      .luna-panel { width: calc(100vw - 3rem); right: -0.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .footer .container { flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+  </style>
 </head>
+<body class="locked">
 
-<body>
-	<header>
-		<nav>
-			<a href="/">
-				<img style="height: auto; width: 35px; border-radius: 10px;" src="img/shakir.jpg" alt="Logo" class="logo">
-			</a>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-name">
+      <span>Shakir</span> <span>Sadiq</span>
+    </div>
+    <div class="preloader-bar"></div>
+  </div>
 
-			<ul class="nav-menu">
-				<li class="nav-link">
-					<a href="#about">About</a>
-				</li>
-				<li class="nav-link">
-					<a href="https://www.buymeacoffee.com/shakirsadiq6/posts" target="_blank">Posts</a>
-				</li>
-				<li class="nav-link">
-					<a href="#projects">Projects</a>
-				</li>
-				<li class="nav-link">
-					<a href="#contact">Contact</a>
-				</li>
-				<li class="nav-link">
-					<a href="https://docs.google.com/document/d/158M7zE7XPJlRYIkJAW7f9Lg1L4fjw9GYBKcYKRXs_Dg/edit"
-						target="_blank">Resume</a>
-				</li>
+  <!-- Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-				<li class="nav-social-links social-links">
-					<a href="https://github.com/shakirsadiq6" target="_blank" class="social github">
-						<img src="img/github.svg" alt="GitHub Icon">
-					</a>
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-					<a href="https://www.linkedin.com/in/shakir-sadiq-35720a19b" target="_blank" class="social linkedin">
-						<img src="img/in.svg" alt="LinkedIn Icon">
-					</a>
+  <!-- Noise Overlay -->
+  <div class="noise"></div>
 
-					<a href="https://twitter.com/shakirsadiq6" target="_blank" class="social twitter">
-						<img src="img/twitter.svg" alt="Twitter icon">
-					</a>
+  <!-- Aurora Orbs -->
+  <div class="aurora-wrap" aria-hidden="true">
+    <div class="aurora-orb aurora-orb--1"></div>
+    <div class="aurora-orb aurora-orb--2"></div>
+    <div class="aurora-orb aurora-orb--3"></div>
+  </div>
 
-				</li>
-			</ul>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <a href="#" class="nav-logo">SS<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://docs.google.com/document/d/158M7zE7XPJlRYIkJAW7f9Lg1L4fjw9GYBKcYKRXs_Dg/edit?tab=t.0" class="nav-resume" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
-			<button class="hamburger" type="button" name="menu button">
-				<div class="menu-bar">
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <canvas class="particle-canvas" id="particleCanvas"></canvas>
+      <div class="hero-bg-glow" id="heroGlow"></div>
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-greeting" id="heroGreeting">Hello there!</p>
 
-				</div>
-			</button>
-		</nav>
-	</header>
+          <h1 class="hero-title">
+            <span class="line"><span class="line-inner" id="heroLine1">I'm Shakir</span></span>
+            <span class="line"><span class="line-inner accent" id="heroLine2">Sadiq.</span></span>
+          </h1>
 
-	<main>
-		<section>
-			<span class="salutation">Hello there!</span>
-			<h1>
-				I'm <span class="name-highlight">Shakir Sadiq</span>.
-			</h1>
+          <p class="hero-subtitle" id="heroSubtitle">Data Scientist. Data Engineer. Python &amp; Golang Developer.</p>
 
-			<p class="declaration" style="font-size: 32px;">I engineer streamlined and expandable web solutions</p>
+          <p class="hero-bio" id="heroBio">With 5+ years of experience across data science, data engineering, and backend development, I turn raw data into insights and ideas into production-grade systems — from ML pipelines and ETL workflows to scalable APIs and cloud-native architectures.</p>
 
-			<p style="text-align: justify;">
-				Welcome to the realm of Shakir Sadiq, a Python maestro who knows no bounds. Having 4+ years of python experience, Shakir uses every chance to immerse in the world of code.
-			</p>
+          <div class="hero-stats" id="heroStats">
+            <div class="stat-item">
+              <div class="stat-number" data-target="350">0</div>
+              <div class="stat-label">Caffeine Shots</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="99">0</div>
+              <div class="stat-label">Sleepless Nights</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="1000">0</div>
+              <div class="stat-label">System Reboots</div>
+            </div>
+          </div>
 
-			<div id="funny-numbers" style="display: flex;">
-				<div class="stats" style="margin-right: 5%;">
-					<div class="number">350+</div>
-					<div class="label">Caffeine Shots</div>
-				</div>
-				<div class="stats" style="margin-right: 5%;">
-					<div class="number">99+</div>
-					<div class="label">Sleepless Nights</div>
-				</div>
-				<div class="stats">
-					<div class="number">1000+</div>
-					<div class="label">System Reboots</div>
-				</div>
-			</div>
+          <div class="hero-actions" id="heroActions">
+            <a href="#contact" class="btn-primary magnetic">
+              Reach Out
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <div class="social-links">
+              <a href="https://github.com/shakirsadiq6" class="social-link magnetic" aria-label="GitHub" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/shakir-sadiq-35720a19b" class="social-link magnetic" aria-label="LinkedIn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065Zm1.782 13.019H3.555V9h3.564v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z"/></svg>
+              </a>
+              <a href="https://x.com/shakirsadiq6" class="social-link magnetic" aria-label="Twitter" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-			<div class="cta-box">
-				<a href="#contact" class="cta cta1">Reach Out</a>
-			</div>
-		</section>
+    <!-- About -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-label reveal">About</div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p class="reveal">With 5+ years of hands-on experience, I operate at the intersection of data science, data engineering, and software development. As a <strong>Data Scientist</strong>, I build ML models, run statistical analyses, and extract actionable insights from complex datasets. As a <strong>Data Engineer</strong>, I design and maintain ETL pipelines, data warehouses, and streaming architectures that power data-driven decision making at scale.</p>
 
-		<aside class="main-social-links social-links">
-			<a href="https://github.com/shakirsadiq6" target="_blank" class="social github">
-				<img src="img/github.svg" alt="GitHub Icon">
-			</a>
+            <p class="reveal reveal-delay-1">As a <strong>Python Developer</strong>, my expertise spans web development (Django, Flask), API design (DRF), and cloud-native solutions on AWS — working with Lambda, Step Functions, EventBridge, ECS, LightSail, and S3. I also build intelligent applications using LLMs, LangChain, and voice AI platforms like Retell, Cartesia, and ElevenLabs. From OpenAI-powered tools to autonomous AI agents — I turn complex capabilities into seamless experiences.</p>
 
-			<a href="https://www.linkedin.com/in/shakir-sadiq-35720a19b" target="_blank" class="social linkedin">
-				<img src="img/in.svg" alt="LinkedIn Icon">
-			</a>
+            <p class="reveal reveal-delay-2">As a <strong>Golang Developer</strong>, I build high-performance microservices, concurrent systems, and efficient backend solutions. Go's simplicity and speed make it my go-to for systems that demand low latency and high throughput.</p>
 
-			<a href="https://twitter.com/shakirsadiq6" target="_blank" class="social twitter">
-				<img src="img/twitter.svg" alt="Twitter icon">
-			</a>
+            <div class="about-tech reveal reveal-delay-3">
+              <h3>Technologies I work with</h3>
+              <div class="tech-grid">
+                <span class="tech-item">Python 3</span>
+                <span class="tech-item">Golang</span>
+                <span class="tech-item">JavaScript</span>
+                <span class="tech-item">Django</span>
+                <span class="tech-item">Flask</span>
+                <span class="tech-item">DRF</span>
+                <span class="tech-item">Pandas</span>
+                <span class="tech-item">NumPy</span>
+                <span class="tech-item">Scikit-learn</span>
+                <span class="tech-item">TensorFlow</span>
+                <span class="tech-item">LangChain</span>
+                <span class="tech-item">LLMs / OpenAI</span>
+                <span class="tech-item">Retell</span>
+                <span class="tech-item">ElevenLabs</span>
+                <span class="tech-item">Cartesia</span>
+                <span class="tech-item">ETL Pipelines</span>
+                <span class="tech-item">AWS Lambda</span>
+                <span class="tech-item">Step Functions</span>
+                <span class="tech-item">EventBridge</span>
+                <span class="tech-item">ECS</span>
+                <span class="tech-item">S3</span>
+                <span class="tech-item">LightSail</span>
+                <span class="tech-item">Docker</span>
+                <span class="tech-item">Redis</span>
+                <span class="tech-item">Celery</span>
+                <span class="tech-item">PostgreSQL</span>
+                <span class="tech-item">MongoDB</span>
+                <span class="tech-item">MySQL</span>
+                <span class="tech-item">Git / GitHub</span>
+                <span class="tech-item">Linux</span>
+                <span class="tech-item">CI/CD</span>
+                <span class="tech-item">Web Automation</span>
+                <span class="tech-item">Chatbot Dev</span>
+                <span class="tech-item">JIRA</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-image-wrap reveal reveal-delay-2">
+            <div class="about-image">
+              <img src="portfolio-image.png" alt="Shakir Sadiq — Data Scientist, Engineer & Developer" style="width: 100%; height: 100%; object-fit: fill;">
+            </div>
+            <div class="about-image-accent"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		</aside>
-	</main>
+    <!-- Skills Marquee -->
+    <div class="marquee-section">
+      <div class="marquee-track" id="marquee">
+        <span class="marquee-item">Python</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Golang</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Data Science</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Data Engineering</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Django</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Flask</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Pandas</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Scikit-learn</span><span class="marquee-divider"></span>
+        <span class="marquee-item">TensorFlow</span><span class="marquee-divider"></span>
+        <span class="marquee-item">ETL Pipelines</span><span class="marquee-divider"></span>
+        <span class="marquee-item">AWS Lambda</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Docker</span><span class="marquee-divider"></span>
+        <span class="marquee-item">LangChain</span><span class="marquee-divider"></span>
+        <span class="marquee-item">LLMs</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Machine Learning</span><span class="marquee-divider"></span>
+        <span class="marquee-item">REST APIs</span><span class="marquee-divider"></span>
+        <span class="marquee-item">PostgreSQL</span><span class="marquee-divider"></span>
+        <span class="marquee-item">MongoDB</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Redis</span><span class="marquee-divider"></span>
+        <span class="marquee-item">OpenAI</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Selenium</span><span class="marquee-divider"></span>
 
-	<section id="about">
-		<div class="separator">
-			<h2>About</h2>
-		</div>
+        <span class="marquee-item">Python</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Golang</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Data Science</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Data Engineering</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Django</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Flask</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Pandas</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Scikit-learn</span><span class="marquee-divider"></span>
+        <span class="marquee-item">TensorFlow</span><span class="marquee-divider"></span>
+        <span class="marquee-item">ETL Pipelines</span><span class="marquee-divider"></span>
+        <span class="marquee-item">AWS Lambda</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Docker</span><span class="marquee-divider"></span>
+        <span class="marquee-item">LangChain</span><span class="marquee-divider"></span>
+        <span class="marquee-item">LLMs</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Machine Learning</span><span class="marquee-divider"></span>
+        <span class="marquee-item">REST APIs</span><span class="marquee-divider"></span>
+        <span class="marquee-item">PostgreSQL</span><span class="marquee-divider"></span>
+        <span class="marquee-item">MongoDB</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Redis</span><span class="marquee-divider"></span>
+        <span class="marquee-item">OpenAI</span><span class="marquee-divider"></span>
+        <span class="marquee-item">Selenium</span><span class="marquee-divider"></span>
+      </div>
+    </div>
 
-		<div>
-			<p class="about-text" style="text-align: justify;">
-				With a solid 4+ years of experience in <span>Python</span>, I have honed my craft as a <span>Backend Developer</span>
-				and brought numerous projects to life. My expertise spans various domains, including Web
-				(Django, Flask) and API (DRF) development, where I excel at creating efficient and scalable 
-				and RESTful APIs. Additionally, I am well-versed in integrating Websites into cloud-based platforms,
-				ensuring seamless interactions and top-notch performance.
-				<br>
-				<br>
-				Beyond <span>API</span> and <span>web development</span>, I have ventured into the captivating realms of Machine Learning (ML)
-				and Artificial Intelligence (AI). Leveraging <span>ML</span> and <span>AI</span> algorithms, I have contributed to
-				cutting-edge projects that utilize data-driven insights, automate processes, and enable informed
-				decision-making. Furthermore, I have delved into the world of ChatGPT and chatbots, crafting interactive
-				conversational interfaces to enhance user experiences.
-				<br>
-				<br>
-				Stepping outside the Python ecosystem, I have explored <span>Golang</span> (Go), broadening my problem-solving skills
-				and enabling me to craft efficient solutions in this versatile language
-				<br>
-				<br>
-				These are a few tools and technologies I am familiar with which I have also been working with as well.
-			</p>
+    <!-- Featured Projects -->
+    <section class="projects" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal">Projects</div>
+          <h2 class="section-title reveal reveal-delay-1">Things I've built</h2>
+        </div>
 
-			<ul>
-				<li class="tool">Python3</li>
-				<li class="tool">Golang</li>
-				<li class="tool">JavaScript</li>
-				<li class="tool">JQuery</li>
-				<li class="tool">Django</li>
-				<li class="tool">Flask</li>
-				<li class="tool">Web Automation</li>
-				<li class="tool">Chatbot Development</li>
-				<li class="tool">AI</li>
-				<li class="tool">ML</li>
-				<li class="tool">MySQL</li>
-				<li class="tool">PostgreSQL</li>
-				<li class="tool">MongoDB</li>
-				<li class="tool">JIRA</li>
-				<li class="tool">Git/Github</li>
-				<li class="tool">Linux</li>
-				<li class="tool">Mac</li>
-				<li class="tool">Windows</li>
-			</ul>
-		</div>
+        <div class="projects-grid">
+          <article class="project-card tilt-card reveal">
+            <div class="project-card-header">
+              <div class="project-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+              </div>
+              <a href="https://github.com/shakirsadiq6/open-rag-pipeline" class="project-github" aria-label="View on GitHub" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+              </a>
+            </div>
+            <h3>Open RAG Pipeline</h3>
+            <p>A scalable, open-source document ingestion and vectorization system that accepts any file type. Built for retrieval-augmented generation workflows with efficient chunking, embedding, and semantic search.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">RAG</span>
+              <span class="project-tag">LLMs</span>
+              <span class="project-tag">Vectors</span>
+            </div>
+          </article>
 
-		<div class="img-box">
-			<img src="img/shakir.jpg" class="profile-img" alt="Profile Image">
-		</div>
-	</section>
+          <article class="project-card tilt-card reveal reveal-delay-1">
+            <div class="project-card-header">
+              <div class="project-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <a href="https://github.com/shakirsadiq6/llm_convo" class="project-github" aria-label="View on GitHub" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+              </a>
+            </div>
+            <h3>AI Phone Agent</h3>
+            <p>An AI-powered phone agent using ChatGPT over Twilio that conducts real-time voice conversations. Users can call in and interact with an intelligent assistant over the phone.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">OpenAI</span>
+              <span class="project-tag">Twilio</span>
+            </div>
+          </article>
 
-	<section id="projects">
-		<div class="separator">
-			<h2>Projects</h2>
-		</div><br>
-		<div class="other-projects-box">
-			<div class="notable-projects-box">
-				<div class="side-project">
-					<div>
-						<a href="https://github.com/Shakirsadiq6/FaceRecognitionAttendanceSystem" target="_blank">
-							<img src="img/github.svg" alt="github repo link icon">
-						</a>
-					</div>
+          <article class="project-card tilt-card reveal reveal-delay-2">
+            <div class="project-card-header">
+              <div class="project-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+              </div>
+              <a href="https://github.com/shakirsadiq6/CRUD-APIs-Go" class="project-github" aria-label="View on GitHub" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+              </a>
+            </div>
+            <h3>Go CRUD APIs with JWT Auth</h3>
+            <p>RESTful CRUD APIs built in Golang using the Echo framework with JWT-based authentication. Clean architecture with middleware, token management, and secure endpoint protection.</p>
+            <div class="project-tags">
+              <span class="project-tag">Golang</span>
+              <span class="project-tag">Echo</span>
+              <span class="project-tag">JWT</span>
+              <span class="project-tag">REST API</span>
+            </div>
+          </article>
 
-					<h3>Facial Recognition</h3>
+          <article class="project-card tilt-card reveal">
+            <div class="project-card-header">
+              <div class="project-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+              </div>
+              <a href="https://github.com/shakirsadiq6/FaceRecognitionAttendanceSystem" class="project-github" aria-label="View on GitHub" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+              </a>
+            </div>
+            <h3>Face Recognition Attendance System</h3>
+            <p>An automated attendance tracking system powered by facial recognition. Detects and identifies faces in real-time using OpenCV, automatically logging attendance with timestamps.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">OpenCV</span>
+              <span class="project-tag">Face Recognition</span>
+            </div>
+          </article>
 
-					<p style="text-align: center;">
-						An entirely operational facial recognition application that employs the face recognition
-						library to identify and detect the faces of individuals.
-					</p>
+          <article class="project-card tilt-card reveal reveal-delay-1">
+            <div class="project-card-header">
+              <div class="project-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <a href="https://github.com/shakirsadiq6/emotion-classification-sentiment-analysis" class="project-github" aria-label="View on GitHub" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+              </a>
+            </div>
+            <h3>Emotion Classification & Sentiment Analysis</h3>
+            <p>A machine learning model capable of discerning the emotions and sentiments expressed in text, trained using CNN, Naive Bayes, and Random Forest.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">TensorFlow</span>
+              <span class="project-tag">NLP</span>
+            </div>
+          </article>
 
-					<span>Python3, OpenCV</span>
-				</div>
+          <article class="project-card tilt-card reveal reveal-delay-2">
+            <div class="project-card-header">
+              <div class="project-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <a href="https://github.com/shakirsadiq6/Blink_Detection_Python" class="project-github" aria-label="View on GitHub" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+              </a>
+            </div>
+            <h3>Blink Detection System</h3>
+            <p>Real-time blink detection using FaceMesh MediaPipe. Tracks facial landmarks to detect eye blinks with high accuracy — useful for drowsiness detection, accessibility interfaces, and attention monitoring.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">MediaPipe</span>
+              <span class="project-tag">Computer Vision</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-				<div class="side-project">
-					<div>
-						<a href="https://github.com/Shakirsadiq6/User_Login_System_Flask_MongoDB" target="_blank">
-							<img src="img/github.svg" alt="github repo link icon">
-						</a>
-					</div>
+    <!-- Professional Work (NDA) -->
+    <section class="pro-work">
+      <div class="container">
+        <div class="pro-work-header reveal">
+          <div>
+            <h2>Professional Work</h2>
+            <p class="pro-work-note">Client details anonymized under NDA</p>
+          </div>
+        </div>
 
-					<h3>User Registration System</h3>
+        <div class="pro-grid">
+          <article class="pro-card tilt-card reveal">
+            <div class="pro-card-role">Python Developer</div>
+            <h3>Smart Door — Face & Gesture Recognition</h3>
+            <p>Built a Raspberry Pi-powered smart door system with real-time facial recognition using OpenCV and hand gesture control via MediaPipe. The system authenticates users through face detection algorithms and responds to gesture commands for hands-free operation.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">OpenCV</span>
+              <span class="project-tag">MediaPipe</span>
+              <span class="project-tag">Raspberry Pi</span>
+            </div>
+            <div class="pro-card-nda">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              NDA Protected
+            </div>
+          </article>
 
-					<p style="text-align: center;">
-						I developed a robust user registration system using Flask, with MongoDB as the database backend. 
-						Users can effortlessly create accounts and subsequently log in.
-					</p>
+          <article class="pro-card tilt-card reveal reveal-delay-1">
+            <div class="pro-card-role">Golang Developer</div>
+            <h3>API Integrations for Hyperlocal Commerce Platform</h3>
+            <p>Integrated multiple third-party platform APIs into a leading Indian hyperlocal discovery and O2O commerce platform serving 10M+ users and 300K+ merchants. Built robust Go services to connect external partners, handle high-throughput API traffic, and ensure seamless data flow across the ecosystem.</p>
+            <div class="project-tags">
+              <span class="project-tag">Golang</span>
+              <span class="project-tag">REST APIs</span>
+              <span class="project-tag">Microservices</span>
+            </div>
+            <div class="pro-card-nda">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              NDA Protected
+            </div>
+          </article>
 
-					<span>Python3, Flask, MongoDB</span>
-				</div>
+          <article class="pro-card tilt-card reveal reveal-delay-2">
+            <div class="pro-card-role">Python Developer</div>
+            <h3>RAG-Powered Document QnA System</h3>
+            <p>Built an intelligent document QnA platform using LLMs with a Retrieval-Augmented Generation (RAG) pipeline. Users upload documents and interact with their data through a conversational chat interface that retrieves relevant context and delivers accurate, sourced answers.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">LangChain</span>
+              <span class="project-tag">LLMs</span>
+              <span class="project-tag">RAG</span>
+            </div>
+            <div class="pro-card-nda">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              NDA Protected
+            </div>
+          </article>
 
-				<div class="side-project">
-					<div>
-						<a href="https://github.com/Shakirsadiq6/emotion-classification-sentiment-analysis" target="_blank">
-							<img src="img/github.svg" alt="github repo link icon">
-						</a>
-					</div>
+          <article class="pro-card tilt-card reveal reveal-delay-3">
+            <div class="pro-card-role">Python Developer</div>
+            <h3>AI Business Partner Agent</h3>
+            <p>Developed a smart AI agent that helps users scale their business by acting as a strategic partner. Features include real-time internet access for up-to-date market insights, email integration for reading and discussing user emails, chat session export to DOCX, and intelligent decision-making support.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">LLMs</span>
+              <span class="project-tag">OpenAI</span>
+              <span class="project-tag">LangChain</span>
+            </div>
+            <div class="pro-card-nda">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              NDA Protected
+            </div>
+          </article>
 
-					<h3>Emotion Classification & Sentiment Analysis</h3>
+          <article class="pro-card tilt-card reveal">
+            <div class="pro-card-role">Data Engineer</div>
+            <h3>Cloud-Native Data Platform for Life Sciences AI</h3>
+            <p>Worked as a Data Engineer for an AI platform serving medical affairs teams in biotech and life sciences. Built and maintained the entire data infrastructure on AWS — designing pipelines for scientific evidence synthesis, automated literature reviews, and KOL engagement workflows.</p>
+            <div class="project-tags">
+              <span class="project-tag">AWS</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">ETL</span>
+              <span class="project-tag">Data Pipelines</span>
+            </div>
+            <div class="pro-card-nda">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              NDA Protected
+            </div>
+          </article>
 
-					<p style="text-align: center;">
-						A machine learning model capable of discerning the emotions and sentiments expressed in text. 
-						I employed various methods for training the model, including CNN, Naive Bayes Classifier, and 
-						Random Forest, among others.
-					</p>
+          <article class="pro-card tilt-card reveal reveal-delay-1">
+            <div class="pro-card-role">Python Developer</div>
+            <h3>AI Voice Agent Assistants</h3>
+            <p>Built conversational AI voice agents by integrating Retell for real-time voice interactions and ElevenLabs for natural speech synthesis. Created end-to-end voice pipelines that handle inbound/outbound calls with context-aware responses and seamless handoff capabilities.</p>
+            <div class="project-tags">
+              <span class="project-tag">Retell</span>
+              <span class="project-tag">ElevenLabs</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">LLMs</span>
+            </div>
+            <div class="pro-card-nda">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              NDA Protected
+            </div>
+          </article>
 
-					<span>Python3, Tensorflow, Matplotlib</span>
-				</div>
-			</div>
-		</div>
-	</section>
+          <article class="pro-card tilt-card reveal reveal-delay-2">
+            <div class="pro-card-role">Python Developer</div>
+            <h3>Multi-Tenant HR Management System</h3>
+            <p>Architected a multi-tenant HR platform using Django Tenants, where each organization gets an isolated workspace. Features include employee attendance tracking, salary management, leave requests, role-based access control, and comprehensive reporting dashboards.</p>
+            <div class="project-tags">
+              <span class="project-tag">Django</span>
+              <span class="project-tag">Django Tenants</span>
+              <span class="project-tag">PostgreSQL</span>
+              <span class="project-tag">DRF</span>
+            </div>
+            <div class="pro-card-nda">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              NDA Protected
+            </div>
+          </article>
 
-	<section id="more_projects">
-		<div class="separator">
-			<h2>More Projects</h2>
-		</div><br>
-		<div class="other-projects-box">
-			<div class="notable-projects-box">
-				<div class="side-project" style="display: inline;">
-					<h3 style="font-size: small;">Project Buddy</h3>
-					<p style="font-size: x-small; text-align: justify;">A sophisticated social media platform leveraging Django. Empowered users to share posts, engage through comments and likes, expand their network by adding connections, and facilitated seamless real-time communication via Django Channels enhanced chat functionalities.</p>
-					<span style="font-size: small;">Python3, Django, DRF</span>
-				</div>
-				<div class="side-project" style="display: inline;">
-					<h3 style="font-size: small;">CoDs</h3>
-					<p style="font-size: x-small; text-align: justify;">Led the development of CoDS (Church of Divine Structure), an innovative ecommerce platform. Enabled users to seamlessly purchase products, book appointments with spiritual advisors, integrated shipping APIs, and implemented various features synonymous with a robust ecommerce website.</p>
-					<span style="font-size: small;">Python3, Django, Stripe</span>
-				</div>
-				<div class="side-project" style="display: inline;">
-					<h3 style="font-size: small;">SkipIt</h3>
-					<p style="font-size: x-small; text-align: justify;">It was a project designed to provide concise summaries for various types of content, including YouTube videos, PDF links, and web links. Users had the capability to ask questions about the content, enhancing the interactive and informative aspects of the platform.</p>
-					<span style="font-size: small;">Python3, Django, OpenAI</span>
-				</div>
-				<div class="side-project" style="display: inline;">
-					<h3 style="font-size: small;">ANPR system</h3>
-					<p style="font-size: x-small; text-align: justify;">Engineered an Automatic Number Plate Recognition (ANPR) system featuring a machine learning model proficient in 2D object detection for precise identification of vehicle number plates. Implemented OCR technology for accurate extraction of alphanumeric information, enhancing the system's capabilities for seamless number plate reading.</p>
-					<span style="font-size: small;">Python3, Tensorflow, OCR</span>
-				</div>
-			</div>
-		</div>
-		<div class="other-projects-box">
-			<div class="notable-projects-box">
-				<div class="side-project" style="display: inline;">
-					<h3 style="font-size: small;">Xinconcare</h3>
-					<p style="font-size: x-small; text-align: justify;">I spearheaded the development of Xinconcare, a cutting-edge website seamlessly integrated with OpenAI to enhance user interactions and streamline diverse tasks. This multifaceted platform excels in: QnA, Document Analysis, Asana Integration, Communication Hub, Box Integration, Task Automation.</p>
-					<span style="font-size: small;">Python3, Django, Openai, Asana, Box</span>
-				</div>
-				<div class="side-project" style="display: inline;">
-					<h3 style="font-size: small;">TLC</h3>
-					<p style="font-size: x-small; text-align: justify;">I led the creation of a sophisticated online examination platform designed for Multiple-Choice Questions (MCQs). This dynamic website boasts the following features: AI-Generated MCQs, PDF Upload Functionality, User-Friendly Interface, Monetization through Stripe, Exam Purchasing System.</p>
-					<span style="font-size: small;">Python3, Django, OpenAI</span>
-				</div>
-				<div class="side-project" style="display: inline;">
-					<h3 style="font-size: small;">Web Scrapping</h3>
-					<p style="font-size: x-small; text-align: justify;">Experienced in web scraping using Scrapy, Selenium, BeautifulSoup, and MechanicalSoup. Proficient in extracting and validating data from diverse websites with a focus on accuracy and efficiency.</p>
-					<span style="font-size: small;">Scrapy, Selenium, BS4</span>
-				</div>
-				<div class="side-project" style="display: inline;">
-					<h3 style="font-size: small;">Web Automation</h3>
-					<p style="font-size: x-small; text-align: justify;">Skilled in Selenium web automation, proficient in creating efficient and robust scripts for browser automation. Demonstrated expertise in navigating dynamic web elements and streamlining repetitive tasks. Experienced in enhancing workflow efficiency through automated processes.</p>
-					<span style="font-size: small;">Selenium</span>
-				</div>
-			</div>
-		</div>
-	</section>
+          <article class="pro-card tilt-card reveal reveal-delay-3">
+            <div class="pro-card-role">Python Developer</div>
+            <h3>Browser Automation & Testing Suite</h3>
+            <p>Developed robust browser automation solutions using Playwright and Selenium for end-to-end workflow automation, regression testing, and repetitive task elimination. Built reliable scripts that handle dynamic web elements, authentication flows, and complex multi-step processes.</p>
+            <div class="project-tags">
+              <span class="project-tag">Playwright</span>
+              <span class="project-tag">Selenium</span>
+              <span class="project-tag">Python</span>
+            </div>
+            <div class="pro-card-nda">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              NDA Protected
+            </div>
+          </article>
 
-	<section id="contact">
-		<div>
-			<h4 style="font-size: 28px;">Feel free to stay in touch!</h4>
+          <article class="pro-card tilt-card reveal">
+            <div class="pro-card-role">Python Developer</div>
+            <h3>Large-Scale Web Scraping Infrastructure</h3>
+            <p>Built scalable web scraping systems using BeautifulSoup4 and Selenium for extracting structured data from diverse websites. Handled anti-bot mechanisms, dynamic content rendering, pagination, and data validation pipelines for clean, reliable datasets.</p>
+            <div class="project-tags">
+              <span class="project-tag">BeautifulSoup4</span>
+              <span class="project-tag">Selenium</span>
+              <span class="project-tag">Python</span>
+            </div>
+            <div class="pro-card-nda">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              NDA Protected
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-			<p>
-				If you believe we're a good match and would like to collaborate, please don't hesitate to
-				drop me an email. Let's have an enjoyable experience working together.
-			</p>
+    <!-- More Projects -->
+    <section class="more-projects">
+      <div class="container">
+        <div class="more-projects-header reveal">
+          <h2>More Projects</h2>
+        </div>
 
-			<a href="mailto:shakirsadiq24@gmail.com" class="cta cta2" target="_blank">Get in Touch</a>
-		</div>
+        <div class="more-grid">
+          <article class="more-card tilt-card reveal">
+            <h3>Project Buddy</h3>
+            <p>A sophisticated social media platform leveraging Django. Users share posts, engage through comments and likes, expand connections, and communicate in real-time via Django Channels.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python3</span>
+              <span class="project-tag">Django</span>
+              <span class="project-tag">DRF</span>
+            </div>
+          </article>
 
-		<aside class="contact-social-links social-links">
-			<a href="https://github.com/shakirsadiq6" target="_blank" class="social github">
-				<img src="img/github.svg" alt="GitHub Icon">
-			</a>
+          <article class="more-card tilt-card reveal reveal-delay-1">
+            <h3>CoDs</h3>
+            <p>Led development of Church of Divine Structure, an innovative ecommerce platform. Users purchase products, book appointments, with integrated shipping APIs and Stripe payments.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python3</span>
+              <span class="project-tag">Django</span>
+              <span class="project-tag">Stripe</span>
+            </div>
+          </article>
 
-			<a href="https://www.linkedin.com/in/shakir-sadiq-35720a19b" target="_blank" class="social linkedin">
-				<img src="img/in.svg" alt="LinkedIn Icon">
-			</a>
+          <article class="more-card tilt-card reveal reveal-delay-2">
+            <h3>SkipIt</h3>
+            <p>Designed to provide concise summaries for YouTube videos, PDF links, and web links. Users could ask questions about the content for an interactive experience.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python3</span>
+              <span class="project-tag">Django</span>
+              <span class="project-tag">OpenAI</span>
+            </div>
+          </article>
 
-			<a href="https://twitter.com/shakirsadiq6" target="_blank" class="social twitter">
-				<img src="img/twitter.svg" alt="Twitter icon">
-			</a>
+          <article class="more-card tilt-card reveal reveal-delay-3">
+            <h3>ANPR System</h3>
+            <p>Automatic Number Plate Recognition system featuring ML-based 2D object detection for precise identification of vehicle number plates with OCR extraction.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python3</span>
+              <span class="project-tag">TensorFlow</span>
+              <span class="project-tag">OCR</span>
+            </div>
+          </article>
 
-		</aside>
-	</section>
-	<div class="chatbot chatbot--closed">
-		<div class="chatbot__header">
-		  <p><strong>Got a question about me?</strong> <span class="u-text-highlight">Ask Luna</span></p>
-		  <svg class="chatbot__close-button icon-speech" viewBox="0 0 32 32">
-			<use xlink:href="#icon-speech" />
-		  </svg>
-		  <svg class="chatbot__close-button icon-close" viewBox="0 0 32 32">
-			<use xlink:href="#icon-close" />
-		  </svg>
-		</div>
-		<div class="chatbot__message-window">
-		  <ul class="chatbot__messages">
-			<li class="is-ai animation">
-			  <div class="is-ai__profile-picture">
-				<svg class="icon-avatar" viewBox="0 0 32 32">
-				  <use xlink:href="#avatar" />
-				</svg>
-			  </div>
-			  <span class="chatbot__arrow chatbot__arrow--left"></span>
-			  <p class='chatbot__message'>Hi there 🖐. I’m Luna, your virtual ai assistant.</p>
-			</li>
-			<!-- Answer and response added here -->
-		  </ul>
-		</div>
-		<div class="chatbot__entry chatbot--closed">
-		  <input type="text" class="chatbot__input" placeholder="Write a message..." />
-		  <svg class="chatbot__submit" viewBox="0 0 32 32">
-			<use xlink:href="#icon-send" />
-		  </svg>
-		</div>
-	  </div>
-	  
-	  <!-- Symbols -->
-	  <svg>
-		<!-- Close icon -->
-		<symbol id="icon-close" viewBox="0 0 32 32">
-		  <title>Close</title>
-		  <path d="M2.624 8.297l2.963-2.963 23.704 23.704-2.963 2.963-23.704-23.704z" />
-		  <path d="M2.624 29.037l23.704-23.704 2.963 2.963-23.704 23.704-2.963-2.963z" />
-		</symbol>
-	  
-		<!-- Speech icon -->
-		<symbol id="icon-speech" viewBox="0 0 32 32">
-		  <title>Speech</title>
-		  <path d="M21.795 5.333h-11.413c-0.038 0-0.077 0-0.114 0l-0.134 0.011v2.796c0.143-0.006 0.273-0.009 0.385-0.009h11.277c0.070 0 7.074 0.213 7.074 7.695 0 5.179-2.956 7.695-9.036 7.695h-3.792c-0.691 0-1.12 0.526-1.38 1.159l-1.387 3.093-1.625 3.77 0.245 0.453h2.56l2.538-5.678h2.837c7.633 0 11.84-3.727 11.84-10.494 0.001-8.564-7.313-10.492-9.875-10.492z" />
-		  <path d="M10.912 24.259c-0.242-0.442-0.703-0.737-1.234-0.737-0 0-0 0-0 0h-0.56c-0.599-0.011-1.171-0.108-1.71-0.28l0.042 0.012c-1.82-0.559-4.427-2.26-4.427-7.424 0-6.683 5.024-7.597 7.109-7.686v-2.8c-2.042 0.095-9.91 1.067-9.91 10.483 0 4.832 1.961 7.367 3.606 8.64 1.38 1.067 3.109 1.744 4.991 1.843l0.033 0.019 2.805 5.211 1.41-3.273z" />
-		</symbol>
-	  
-		<!-- Send icon -->
-		<symbol id="icon-send" viewBox="0 0 32 32">
-		  <title>Send</title>
-			<defs>
-			<style>.cls-1{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style>
-			</defs>
-			<title/>
-			<g data-name="12-sent" id="_12-sent">
-			<polygon class="cls-1" points="19 31 13 19 1 13 31 1 19 31"/>
-			<line class="cls-1" x1="13" x2="25" y1="19" y2="7"/>
-			</g>
-		</symbol>
-		
-		<!-- Avatar icon -->
-		<symbol id="avatar" width="32" height="32" viewBox="0 0 48 48">
-			<title>Avatar</title>
-			<path fill="#efad60" d="M20.998,35.002v8.999h8.001v-8.999H20.998z"></path>
-			<path fill="#424242" d="M25.999,35.001v9l3.984-0.624	c0.672-0.305,1.344-0.72,2.016-1.376l0.976-1.243l1.579-4.125l-4.185-4.763L25.999,35.001z"></path>
-			<path fill="#a07416" d="M35.999,27.001c3.961,4.612,7,10.603,7,16	c-1.899-0.059-5.896-1.351-8-4c-0.607,1.295-1.804,2.148-3,3c0.439-1.305,1-2.627,1-4c0-1.513-0.763-2.513-2-4l-0.381-5.221	L35.999,27.001z"></path>
-			<path fill-rule="evenodd" d="M14.998,32.002v6.999h7.001v-6.999	H14.998z" clip-rule="evenodd"></path>
-			<path fill="#ffb74d" d="M33.999,30.001c-1.584,3.968-5.429,7-10,7	c-2.687,0-5.389-1.789-7-4l0.099-6.941l6.92-7.92l11.48,3.44L33.999,30.001z"></path>
-			<path fill="#784719" d="M18.997,27.502c0-1.38,1.121-2.501,2.501-2.501	c1.38,0,2.501,1.121,2.501,2.501c0,0.172-0.017,0.339-0.051,0.5h-1.22c-0.345-0.597-0.992-1-1.731-1	c-0.856,0-1.588,0.539-1.873,1.297C19.042,28.047,18.997,27.781,18.997,27.502z"></path>
-			<path fill="#424242" d="M15.837,35.662c4.056,1.239,7.655,1.997,10.175,4.976	l-2.012,5.363c-2.333-0.563-4.667-1.153-7-2l-2.631-2.871l0.14-4.42L15.837,35.662z"></path>
-			<path fill="#a07416" d="M38.999,23.001c-0.343,4.332-2.815,6.883-7,8	c0.987-1.341,1-4,1-7c-2,0-3,0-5-2c-0.36,1.449-1.965,3.177-4,5v-5c-1.441,2.023-3.101,3.7-5,5c0,5.484-3,8.948-3,14	c0,1.053,0.469,2,1,3c-1.528-0.199-2.884-0.812-4-2c-2.711,1.241-4.545,3.008-6,5c-3.635-1.301-6-3.176-6-6	c0-3.244,5.468-8.367,9-12l3.473-8.527l10.4-9.149l10.451-0.1l6.149,7.849L38.999,23.001z"></path>
-			<path fill="#424242" d="M-0.001,28.001c0-2.189,4.368-7.412,8-10v-5	c-2.176,0-3.604-0.436-5-1c4.713-4.536,8.619-12,15-12c3.245,0,6.029,3.331,8.109,5.392c2.179-0.895,4.48-1.392,6.891-1.392	c6,0,11,5.816,11,11c0,3-2.203,6.189-5,8c0-4.199-4-9-12-9c-12,0-12,17-21,17C2.761,31.001-0.001,29.745-0.001,28.001z"></path>
-			<path fill-rule="evenodd" d="M7.998,18.002v-4.001h7.231	c-1.029,1.261-2,2.603-2.912,4.001H7.998z" clip-rule="evenodd"></path>
-			<path fill="#90caf9" fill-rule="evenodd" d="M22.999,6.501	c0-1.103,0.22-1.5,1.5-1.5c0.479,0,0.905,0.225,1.179,0.575c-0.892,0.392-1.764,0.849-2.613,1.367	C23.022,6.803,22.999,6.655,22.999,6.501z" clip-rule="evenodd"></path>
-			<path fill="#eceff1" d="M22.995,31.501c0-0.171,0.017-0.337,0.051-0.5h4.891	c0.033,0.163,0.052,0.329,0.052,0.5c0,0.172-0.017,0.339-0.051,0.5l-2.384,0.741l-2.509-0.741	C23.011,31.839,22.995,31.673,22.995,31.501z"></path>
-			<path fill="red" fill-rule="evenodd" d="M23.045,32.001h4.893	c-0.232,1.141-1.241,2-2.445,2C24.286,34.001,23.277,33.142,23.045,32.001z" clip-rule="evenodd"></path>
-			<path fill="#784719" d="M27.998,27.501c0-1.38,1.121-2.501,2.501-2.501	c1.38,0,2.501,1.121,2.501,2.501c0,0.172-0.017,0.339-0.051,0.5h-1.22c-0.345-0.597-0.992-1-1.731-1	c-0.856,0-1.588,0.539-1.873,1.297C28.043,28.046,27.998,27.779,27.998,27.501z"></path>
-			<path fill="#ffca28" d="M28.471,48.001l-0.473-2.712l2.001-1.92l-2.765-0.395	l-1.235-2.468l-1.236,2.468l-2.764,0.395l1.999,1.92l-0.471,2.712l2.471-1.28L28.471,48.001z"></path>
-			<path fill="#90caf9" fill-rule="evenodd" d="M19.999,7.001	c0-1.007-1.059-2-2-2c-1.455,0-2.705,0.965-4,2c1.925,0.325,2.627,1,4,1C18.762,8.001,19.999,7.745,19.999,7.001z" clip-rule="evenodd"></path>
-			<path d="M11.369,19.471c-0.463-0.3-0.595-0.92-0.295-1.383	c2.964-4.535,6.155-8.445,10.971-11.109c0.883-0.488,1.875-0.917,2.835-1.229c0.408-0.133,0.823-0.232,1.228-0.36	c-1.213,0.795-2.331,1.525-3.468,2.436c-3.881,3.108-7.231,7.165-9.888,11.351C12.451,19.639,11.831,19.771,11.369,19.471z"></path>
-		</symbol>
-	  </svg>
-	<script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+          <article class="more-card tilt-card reveal">
+            <h3>Xinconcare</h3>
+            <p>A cutting-edge website integrated with OpenAI for QnA, Document Analysis, Asana Integration, Communication Hub, Box Integration, and Task Automation.</p>
+            <div class="project-tags">
+              <span class="project-tag">Django</span>
+              <span class="project-tag">OpenAI</span>
+              <span class="project-tag">Asana</span>
+              <span class="project-tag">Box</span>
+            </div>
+          </article>
+
+          <article class="more-card tilt-card reveal reveal-delay-1">
+            <h3>TLC</h3>
+            <p>An online examination platform for MCQs featuring AI-Generated questions, PDF upload, Stripe monetization, and a user-friendly exam purchasing system.</p>
+            <div class="project-tags">
+              <span class="project-tag">Django</span>
+              <span class="project-tag">OpenAI</span>
+              <span class="project-tag">Stripe</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+          <div class="section-label reveal">Contact</div>
+          <h2 class="contact-heading reveal reveal-delay-1">
+            Let's build<br>something <span class="accent">great.</span>
+          </h2>
+          <p class="contact-text reveal reveal-delay-2">If you believe we're a good match and would like to collaborate, please don't hesitate to reach out. Let's build something great together.</p>
+
+          <div class="reveal reveal-delay-3" style="margin-top: 2rem;">
+            <a href="mailto:shakirsadiq24@gmail.com" style="font-size: 1.1rem; font-weight: 600; color: var(--accent); transition: color 0.3s;">shakirsadiq24@gmail.com</a>
+          </div>
+
+          <div class="contact-socials reveal reveal-delay-3" style="justify-content: center; margin-top: 1.5rem;">
+            <a href="https://github.com/shakirsadiq6" class="social-link magnetic" aria-label="GitHub" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/shakir-sadiq-35720a19b" class="social-link magnetic" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065Zm1.782 13.019H3.555V9h3.564v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z"/></svg>
+            </a>
+            <a href="https://x.com/shakirsadiq6" class="social-link magnetic" aria-label="Twitter" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+
+          <p class="contact-luna reveal reveal-delay-4">Got a question about me? <a href="#" id="openLuna" style="color: var(--accent); font-weight: 600; font-style: normal; cursor: pointer;">Ask Luna &rarr;</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <span class="footer-text">&copy; 2026 Shakir Sadiq. Crafted with precision.</span>
+      <a href="#hero" class="footer-back-top">
+        Back to top
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Luna Chat Widget -->
+  <div class="luna-widget" id="lunaWidget">
+    <button class="luna-toggle" id="lunaToggle" aria-label="Chat with Luna">
+      <svg class="luna-open" viewBox="0 0 64 64" fill="currentColor" stroke="none">
+        <circle cx="32" cy="22" r="12"/>
+        <ellipse cx="32" cy="21" rx="12" ry="12.5"/>
+        <path d="M20 16c0-1 1.5-6 4-8s5.5-3 8-3 5.5 1 8 3 4 7 4 8c0 0-2-3-5-4.5S34 9.5 32 9.5s-5.5.5-8.5 2S20 16 20 16z" fill="currentColor" opacity="0.85"/>
+        <path d="M17 17c-1 2-2 5-2 7 0 3 1.5 5 2.5 4s1-3.5.5-5.5-1-4.5-1-5.5z" fill="currentColor" opacity="0.7"/>
+        <path d="M47 17c1 2 2 5 2 7 0 3-1.5 5-2.5 4s-1-3.5-.5-5.5 1-4.5 1-5.5z" fill="currentColor" opacity="0.7"/>
+        <path d="M18 44c0-8 6.3-14 14-14s14 6 14 14v4H18v-4z"/>
+        <circle cx="27" cy="22" r="1.5" fill="#FFF8F5" opacity="0.9"/>
+        <circle cx="37" cy="22" r="1.5" fill="#FFF8F5" opacity="0.9"/>
+        <path d="M28.5 28.5q3.5 3 7 0" stroke="#FFF8F5" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <svg class="luna-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="luna-panel">
+      <div class="luna-header">
+        <div class="luna-header-row">
+          <div class="luna-avatar">
+            <svg viewBox="0 0 64 64" fill="#FFF8F5" stroke="none">
+              <ellipse cx="32" cy="21" rx="12" ry="12.5"/>
+              <path d="M20 16c0-1 1.5-6 4-8s5.5-3 8-3 5.5 1 8 3 4 7 4 8c0 0-2-3-5-4.5S34 9.5 32 9.5s-5.5.5-8.5 2S20 16 20 16z" opacity="0.85"/>
+              <path d="M18 44c0-8 6.3-14 14-14s14 6 14 14v4H18v-4z"/>
+              <circle cx="27" cy="22" r="1.5" fill="var(--accent)"/>
+              <circle cx="37" cy="22" r="1.5" fill="var(--accent)"/>
+              <path d="M28.5 28.5q3.5 3 7 0" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Luna</h4>
+            <p>Ask me anything about Shakir</p>
+          </div>
+        </div>
+      </div>
+      <div class="luna-messages" id="lunaMessages">
+        <div class="luna-msg bot">Hi! I'm Luna, Shakir's virtual assistant. Ask me about his skills, projects, or experience. Try typing "joke" or "fun fact"!</div>
+      </div>
+      <div class="luna-input-wrap">
+        <input type="text" id="lunaInput" placeholder="Type a question..." autocomplete="off">
+        <button id="lunaSend">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      /* ───── PRELOADER ───── */
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var preloader = document.getElementById('preloader');
+          preloader.classList.add('done');
+          document.body.classList.remove('locked');
+          triggerHeroAnimations();
+          setTimeout(function() { preloader.style.display = 'none'; }, 1000);
+        }, 1400);
+      });
+
+      function triggerHeroAnimations() {
+        document.getElementById('heroGreeting').classList.add('anim');
+        document.getElementById('heroLine1').classList.add('anim');
+        document.getElementById('heroLine2').classList.add('anim');
+        document.getElementById('heroSubtitle').classList.add('anim');
+        document.getElementById('heroBio').classList.add('anim');
+        document.getElementById('heroStats').classList.add('anim');
+        document.getElementById('heroActions').classList.add('anim');
+
+        var pc = document.getElementById('particleCanvas');
+        if (pc) setTimeout(function() { pc.classList.add('active'); }, 600);
+
+        setTimeout(startCounters, 2800);
+      }
+
+      /* ───── CUSTOM CURSOR ───── */
+      var cursorDot = document.getElementById('cursorDot');
+      var cursorRing = document.getElementById('cursorRing');
+      var ringPos = { x: 0, y: 0 };
+      var mousePos = { x: 0, y: 0 };
+
+      if (window.matchMedia('(pointer: fine)').matches) {
+        document.addEventListener('mousemove', function(e) {
+          mousePos.x = e.clientX;
+          mousePos.y = e.clientY;
+          cursorDot.style.left = e.clientX + 'px';
+          cursorDot.style.top = e.clientY + 'px';
+        });
+
+        (function animateRing() {
+          ringPos.x += (mousePos.x - ringPos.x) * 0.12;
+          ringPos.y += (mousePos.y - ringPos.y) * 0.12;
+          cursorRing.style.left = ringPos.x + 'px';
+          cursorRing.style.top = ringPos.y + 'px';
+          requestAnimationFrame(animateRing);
+        })();
+
+        var hoverTargets = 'a, button, .tilt-card, .magnetic, input, textarea';
+        document.addEventListener('mouseover', function(e) {
+          if (e.target.closest(hoverTargets)) cursorRing.classList.add('hovering');
+        });
+        document.addEventListener('mouseout', function(e) {
+          if (e.target.closest(hoverTargets)) cursorRing.classList.remove('hovering');
+        });
+      }
+
+      /* ───── SCROLL PROGRESS ───── */
+      var scrollProgress = document.getElementById('scrollProgress');
+      window.addEventListener('scroll', function() {
+        var h = document.documentElement;
+        var pct = h.scrollTop / (h.scrollHeight - h.clientHeight);
+        scrollProgress.style.transform = 'scaleX(' + pct + ')';
+      }, { passive: true });
+
+      /* ───── NAV SCROLL STATE ───── */
+      var nav = document.getElementById('nav');
+      var lastScroll = 0;
+
+      window.addEventListener('scroll', function() {
+        var st = window.scrollY;
+        if (st > 60) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+        lastScroll = st;
+      }, { passive: true });
+
+      /* ───── MOBILE NAV ───── */
+      var navToggle = document.getElementById('navToggle');
+      var navLinks = document.getElementById('navLinks');
+
+      navToggle.addEventListener('click', function() {
+        navToggle.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+
+      navLinks.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          navToggle.classList.remove('open');
+          navLinks.classList.remove('open');
+        });
+      });
+
+      /* ───── HERO GLOW ───── */
+      var heroSection = document.querySelector('.hero');
+      var heroGlow = document.getElementById('heroGlow');
+
+      heroSection.addEventListener('mousemove', function(e) {
+        var rect = heroSection.getBoundingClientRect();
+        var x = ((e.clientX - rect.left) / rect.width - 0.5) * 60;
+        var y = ((e.clientY - rect.top) / rect.height - 0.5) * 60;
+        heroGlow.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+      });
+
+      /* ───── SCROLL REVEAL ───── */
+      var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        revealObserver.observe(el);
+      });
+
+      /* ───── COUNTER ANIMATION ───── */
+      function startCounters() {
+        document.querySelectorAll('.stat-number').forEach(function(el) {
+          var target = parseInt(el.dataset.target, 10);
+          var duration = 2000;
+          var start = performance.now();
+
+          function update(now) {
+            var elapsed = now - start;
+            var progress = Math.min(elapsed / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 4);
+            el.textContent = Math.floor(eased * target);
+            if (progress < 1) {
+              requestAnimationFrame(update);
+            } else {
+              el.textContent = target + '+';
+            }
+          }
+          requestAnimationFrame(update);
+        });
+      }
+
+      /* ───── MAGNETIC BUTTONS ───── */
+      if (window.matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('.magnetic').forEach(function(el) {
+          el.addEventListener('mousemove', function(e) {
+            var rect = el.getBoundingClientRect();
+            var x = e.clientX - rect.left - rect.width / 2;
+            var y = e.clientY - rect.top - rect.height / 2;
+            el.style.transform = 'translate(' + (x * 0.25) + 'px, ' + (y * 0.25) + 'px)';
+          });
+          el.addEventListener('mouseleave', function() {
+            el.style.transform = '';
+            el.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+            setTimeout(function() { el.style.transition = ''; }, 400);
+          });
+        });
+      }
+
+      /* ───── 3D TILT CARDS ───── */
+      if (window.matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('.tilt-card').forEach(function(card) {
+          card.addEventListener('mousemove', function(e) {
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var cx = rect.width / 2;
+            var cy = rect.height / 2;
+            var rx = ((y - cy) / cy) * -6;
+            var ry = ((x - cx) / cx) * 6;
+            card.style.transform = 'perspective(800px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) scale3d(1.015, 1.015, 1.015)';
+          });
+          card.addEventListener('mouseleave', function() {
+            card.style.transform = '';
+            card.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s, box-shadow 0.4s, background 0.3s';
+            setTimeout(function() { card.style.transition = ''; }, 500);
+          });
+        });
+      }
+
+      /* ───── LUNA CHATBOT ───── */
+      var lunaWidget = document.getElementById('lunaWidget');
+      var lunaToggle = document.getElementById('lunaToggle');
+      var lunaInput = document.getElementById('lunaInput');
+      var lunaSend = document.getElementById('lunaSend');
+      var lunaMessages = document.getElementById('lunaMessages');
+
+      var lunaResponses = {
+        python: "Shakir is a Python powerhouse with 5+ years of experience! He's worked as a Data Scientist, Data Engineer, and Python Developer — building everything from ML models and ETL pipelines to Django apps and voice AI agents.",
+        data: "Shakir wears multiple data hats! As a Data Scientist, he builds ML models and predictive analytics. As a Data Engineer, he designs ETL pipelines, streaming architectures, and cloud data warehouses on AWS.",
+        project: "Shakir has built tons of projects — from facial recognition and RAG pipelines to AI phone agents and Go APIs. Many are under NDA, but you can see the anonymized Professional Work section!",
+        contact: "You can reach Shakir at shakirsadiq24@gmail.com! He'd love to hear from you. You can also find him on GitHub, LinkedIn, and Twitter.",
+        email: "Shakir's email is shakirsadiq24@gmail.com. Feel free to drop him a line anytime!",
+        hire: "Interested in working with Shakir? Send him an email at shakirsadiq24@gmail.com — he's open to data science, data engineering, Python, and Golang opportunities!",
+        experience: "Shakir has 5+ years of experience across four roles: Data Scientist, Data Engineer, Python Developer, and Golang Developer. He's built ML models, data pipelines, serverless backends, microservices, and AI-powered applications.",
+        skill: "Shakir's toolkit: Python, Golang, Django, Flask, Pandas, NumPy, Scikit-learn, TensorFlow, Docker, AWS (Lambda, Step Functions, EventBridge, ECS, S3), LangChain, LLMs, Redis, PostgreSQL, MongoDB, and more!",
+        django: "Django is one of Shakir's strongest suits. He's built social media platforms, e-commerce sites, multi-tenant HR systems, examination platforms, and AI-integrated apps with it!",
+        ml: "Shakir has built ML models for emotion classification, sentiment analysis, facial recognition, blink detection, and ANPR. He works with TensorFlow, Scikit-learn, OpenCV, MediaPipe, and Pandas.",
+        ai: "Shakir has extensive AI experience — from LLMs and LangChain for intelligent agents, to voice AI platforms like Retell, Cartesia, and ElevenLabs. He also builds RAG pipelines, QnA systems, and AI business agents.",
+        aws: "Shakir architects cloud-native solutions on AWS! Lambda for serverless, Step Functions for orchestration, EventBridge for event-driven systems, ECS for containers, LightSail for lightweight deploys, and S3 for storage.",
+        pipeline: "Shakir designs end-to-end data pipelines! He builds ETL workflows, data ingestion systems, and cloud data infrastructure on AWS for life sciences and other industries.",
+        langchain: "Shakir uses LangChain to build intelligent, context-aware AI applications — from autonomous agents to retrieval-augmented generation pipelines and complex LLM workflows.",
+        voice: "Shakir works with cutting-edge voice AI platforms including Retell for conversational voice agents, ElevenLabs for realistic speech synthesis, and Cartesia for low-latency voice generation.",
+        golang: "Shakir is a Golang developer who builds high-performance microservices, concurrent systems, and low-latency backends. He's built Go APIs with JWT auth using the Echo framework and integrated third-party platforms at massive scale.",
+        nda: "Many of Shakir's professional projects are under NDA, but you can see what he worked on in the Professional Work section — the details are anonymized while showcasing his impact and tech stack.",
+        rag: "Shakir built an open-source RAG pipeline that ingests any file type, chunks and vectorizes documents, and powers semantic search for LLM applications. Check it out on his GitHub!",
+        twilio: "Shakir built an AI phone agent using ChatGPT over Twilio — you can literally call a number and have a conversation with an AI. The future is now!",
+        blink: "Shakir built a blink detection system using MediaPipe's FaceMesh — it tracks facial landmarks in real-time to detect eye blinks. Useful for drowsiness detection and accessibility!",
+        opencv: "Shakir loves computer vision! He's built facial recognition attendance systems, blink detectors, smart door systems, and ANPR — all powered by OpenCV and MediaPipe.",
+        raspberry: "Shakir once connected a Raspberry Pi to a door and made it recognize faces. Now his door judges people before letting them in. Technology!",
+        age: "Shakir's been coding since he was a teenager. By the time most people figure out what Python is, he was already building ML models with it.",
+        joke: "__JOKE__",
+        who: "I'm Luna! Shakir's virtual assistant, built right into this portfolio. I know everything about his skills, projects, and experience. Try me!",
+        luna: "That's me! I'm Luna, Shakir's digital sidekick. I was born from his love of building chatbots. Ask me anything — I don't bite (I'm just code).",
+        best: "Shakir's best quality as a developer? He doesn't just write code that works — he writes code that makes sense 6 months later. And yes, that's rare.",
+        worst: "Shakir's worst coding habit? He says 'just one more feature' at 2 AM. Spoiler: it's never just one more feature.",
+        sleep: "Sleep is a concept Shakir has heard about but hasn't fully tested in production yet. 99 sleepless nights and counting.",
+        debug: "Shakir's debugging process: 1) Blame the code. 2) Blame the framework. 3) Blame the universe. 4) Find the typo. 5) Question career choices. 6) Ship it.",
+        morning: "Shakir is not a morning person. His code, however, runs 24/7 without complaint. One of them clearly has better discipline.",
+        cat: "Shakir doesn't have a rubber duck for debugging. He explains his code to the void. The void doesn't talk back, but the bugs get fixed anyway.",
+        music: "Shakir codes best with lo-fi beats playing. The bugs hear the music and surrender peacefully. Science hasn't confirmed this, but it works.",
+        weekend: "Shakir's weekends: 50% side projects, 30% 'just quickly checking something', 20% pretending he won't open his laptop. Spoiler: he always opens it.",
+        favorite: "Shakir's favorite language? Python, obviously. But don't tell Go — he doesn't want to hurt its feelings. They have a good thing going.",
+        dark: "Shakir uses dark mode everywhere. His code editor, his terminal, his soul during deployments. Light mode is for people who don't value their retinas.",
+        stack: "Shakir's stack overflow reputation? He's more of a 'read the answer, close the tab, pretend I knew it all along' kind of developer.",
+        tabs: "Tabs vs spaces? Shakir uses spaces. But he respects tabs. Just kidding — tabs people are chaos agents and he stands by that.",
+        hello: "Hey there! I'm Luna, Shakir's virtual assistant. Ask me about his projects, skills, fun facts — or try 'tell me a joke'!",
+        hi: "Hello! I'm Luna. Shakir is a Data Scientist, Data Engineer, Python & Golang Developer. Ask me anything or type 'joke' for a laugh!",
+        hey: "Hey! Welcome to Shakir's corner of the internet. I'm Luna — ask me about his work, or type 'fun fact' if you want something entertaining!",
+        sup: "Not much, just hanging out in this portfolio widget waiting for someone cool to talk to. Oh wait — that's you! What do you want to know about Shakir?",
+        thanks: "You're welcome! Shakir would say the same if he wasn't busy pushing code. Feel free to ask more or reach out to him directly!",
+        thank: "Anytime! That's what I'm here for. If you want to connect with Shakir, hit him up at shakirsadiq24@gmail.com!",
+        bye: "Catch you later! If you ever need Shakir, you know where to find him. He's probably refactoring something right now.",
+        cool: "Right? Shakir builds cool stuff. That's kind of his whole thing. Want to know about something specific?",
+        nice: "I know, right? Shakir doesn't do things halfway. Whether it's a data pipeline or an AI voice agent — it's all or nothing.",
+        wow: "That's the usual reaction when people see Shakir's portfolio! Wait till you hear about the smart door that recognizes faces..."
+      };
+
+      var defaultResponses = [
+        "Fun fact: Shakir has consumed 350+ caffeine shots while coding. His keyboard has a permanent coffee stain as a badge of honor.",
+        "Did you know? Shakir once wrote a web scraper that ran so fast, the website thought it was a DDoS attack. Oops.",
+        "Shakir's debugging strategy: console.log, pray, repeat. Just kidding — he uses proper logging. Most of the time.",
+        "Fun fact: Shakir has 99 sleepless nights logged. The 100th one is being saved for a very special production deploy.",
+        "Did you know? Shakir's first Django project took 2 weeks. Now he can scaffold one in under an hour. Character development.",
+        "Shakir once automated his morning routine with a Python script. It didn't make coffee though, so he still had to get up. 0/10 automation.",
+        "Fun fact: Shakir has rebooted his system 1000+ times. At this point, his laptop greets him by name on startup.",
+        "Shakir's superpower? Turning 'that's impossible' into 'here's the PR' before the meeting ends.",
+        "Fun fact: Shakir taught an AI to talk using Retell and ElevenLabs. It still can't order pizza though. Next sprint.",
+        "Shakir once stared at a bug for 3 hours. Turned out it was a missing comma. He doesn't talk about that day.",
+        "Shakir's Git commits at 3 AM hit different. They're either pure genius or absolute chaos. There is no in between.",
+        "Fun fact: Shakir named his first ML model 'Bob'. Bob had 43% accuracy. Bob was retired. We don't talk about Bob.",
+        "Shakir's code review comments range from 'LGTM' to 'who wrote this?' — and sometimes it's his own code from 6 months ago.",
+        "Did you know? Shakir built a facial recognition door system. His door now has higher standards than most nightclubs.",
+        "Shakir's relationship with Python: It's not a language, it's a lifestyle. 5+ years and still going strong. No couples therapy needed.",
+        "Fun fact: Shakir once deployed on a Friday. Everything was fine. He's been chasing that high ever since.",
+        "Shakir's laptop has seen things. Production crashes, 4 AM hotfixes, and that one time pip install broke everything. It deserves a medal.",
+        "Did you know? Shakir can explain recursion. He just needs to first explain recursion. To understand recursion, see: recursion.",
+        "Shakir treats every bug like a detective case. Motive? Poor logic. Weapon? A typo. Alibi? 'It works on my machine.'",
+        "Fun fact: Shakir's terminal history is 90% git commands, 8% pip install, and 2% 'why isn't this working'. Relatable king.",
+        "Shakir writes Python so clean you could eat off it. His Go code? Also clean. The man fears messy code more than deadlines.",
+        "Did you know? Shakir built an AI business agent that reads your emails and helps make decisions. Basically an AI co-founder without equity demands.",
+        "Shakir's Docker containers are more organized than most people's lives. Each one has a purpose. Each one knows its place.",
+        "Fun fact: Shakir's first ever program was a calculator in Python. Now he builds AI voice agents and RAG pipelines. Glow-up of the century.",
+        "Shakir has built chatbots, voice agents, and AI assistants. Me? I'm his latest creation. I'd say I'm the favorite but I might be biased.",
+        "Shakir's philosophy: 'If it can be automated, it should be automated. If it can't be automated, try harder.'",
+        "Did you know? Shakir speaks fluent Python, Golang, Django, and sarcasm. Only one of those isn't a programming language.",
+        "Fun fact: Shakir has more GitHub repos than hours of sleep this month. Priorities.",
+        "Shakir's code doesn't have bugs. It has 'surprise features' waiting to be discovered. At least that's what he tells the QA team.",
+        "Want to collaborate? Shakir is always open to exciting projects. Drop him a line at shakirsadiq24@gmail.com!"
+      ];
+
+      var defaultIndex = 0;
+
+      var jokeResponses = [
+        "Why do Python developers wear glasses? Because they can't C#. ...I'll see myself out.",
+        "A SQL query walks into a bar, sees two tables, and asks... 'Can I JOIN you?'",
+        "Why do programmers prefer dark mode? Because light attracts bugs.",
+        "Shakir's code is like a good joke — if you have to explain it, it's not that good. Lucky for him, his code speaks for itself.",
+        "How many programmers does it take to change a light bulb? None. That's a hardware problem.",
+        "Why was the JavaScript developer sad? Because he didn't Node how to Express himself.",
+        "Shakir told his computer he needed a break. Now it won't stop sending him Kit-Kat ads.",
+        "A programmer's wife tells him: 'Go to the store and buy a loaf of bread. If they have eggs, buy a dozen.' He comes home with 12 loaves of bread.",
+        "Why do Java developers wear glasses? Because they don't C#. Wait... I already told that one? Blame the cache.",
+        "There are only 10 types of people in the world: those who understand binary and those who don't.",
+        "Shakir's favorite exercise? Running... scripts in production.",
+        "What's a programmer's favorite hangout place? Foo Bar.",
+        "Why did the developer go broke? Because he used up all his cache.",
+        "Shakir asked ChatGPT for a joke. ChatGPT said 'your deployment pipeline.' Even AI has no chill.",
+        "What's the object-oriented way to become wealthy? Inheritance.",
+        "'Knock knock.' 'Who's there?' '...very long pause...' 'Java.'",
+        "Shakir doesn't write bugs. He writes surprise features with aggressive deadlines.",
+        "Why do Python programmers have low self-esteem? They're constantly comparing themselves to others with is instead of ==.",
+        "An SEO expert walks into a bar, bars, pub, tavern, inn, beer, drinks, alcohol...",
+        "Shakir once wrote a recursive joke. To understand it, you must first understand the recursive joke."
+      ];
+      var jokeIndex = 0;
+
+      lunaToggle.addEventListener('click', function() {
+        lunaWidget.classList.toggle('open');
+        if (lunaWidget.classList.contains('open')) {
+          setTimeout(function() { lunaInput.focus(); }, 350);
+        }
+      });
+
+      function sendLunaMessage() {
+        var text = lunaInput.value.trim();
+        if (!text) return;
+
+        var userMsg = document.createElement('div');
+        userMsg.className = 'luna-msg user';
+        userMsg.textContent = text;
+        lunaMessages.appendChild(userMsg);
+        lunaInput.value = '';
+
+        setTimeout(function() {
+          var response = getLunaResponse(text.toLowerCase());
+          var botMsg = document.createElement('div');
+          botMsg.className = 'luna-msg bot';
+          botMsg.textContent = response;
+          lunaMessages.appendChild(botMsg);
+          lunaMessages.scrollTop = lunaMessages.scrollHeight;
+        }, 500 + Math.random() * 400);
+
+        lunaMessages.scrollTop = lunaMessages.scrollHeight;
+      }
+
+      function getLunaResponse(input) {
+        var keys = Object.keys(lunaResponses);
+        for (var i = 0; i < keys.length; i++) {
+          if (input.indexOf(keys[i]) !== -1) {
+            var val = lunaResponses[keys[i]];
+            if (val === '__JOKE__') {
+              var j = jokeResponses[jokeIndex % jokeResponses.length];
+              jokeIndex++;
+              return j;
+            }
+            return val;
+          }
+        }
+        var resp = defaultResponses[defaultIndex % defaultResponses.length];
+        defaultIndex++;
+        return resp;
+      }
+
+      lunaSend.addEventListener('click', sendLunaMessage);
+      lunaInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') sendLunaMessage();
+      });
+
+      /* ───── OPEN LUNA LINK ───── */
+      document.getElementById('openLuna').addEventListener('click', function(e) {
+        e.preventDefault();
+        lunaWidget.classList.add('open');
+        setTimeout(function() { lunaInput.focus(); }, 350);
+      });
+
+      /* ───── PARTICLE CONSTELLATION ───── */
+      (function() {
+        var canvas = document.getElementById('particleCanvas');
+        if (!canvas) return;
+        var ctx = canvas.getContext('2d');
+        var hero = document.getElementById('hero');
+        var particles = [];
+        var mouse = { x: -9999, y: -9999 };
+        var PARTICLE_COUNT = 70;
+        var LINE_DIST = 120;
+        var MOUSE_RADIUS = 150;
+        var raf;
+        var isVisible = true;
+
+        function resize() {
+          var rect = hero.getBoundingClientRect();
+          canvas.width = rect.width;
+          canvas.height = rect.height;
+        }
+
+        function createParticles() {
+          particles = [];
+          for (var i = 0; i < PARTICLE_COUNT; i++) {
+            particles.push({
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height,
+              vx: (Math.random() - 0.5) * 0.4,
+              vy: (Math.random() - 0.5) * 0.4,
+              r: Math.random() * 2 + 1,
+              alpha: Math.random() * 0.3 + 0.1
+            });
+          }
+        }
+
+        function draw() {
+          if (!isVisible) { raf = requestAnimationFrame(draw); return; }
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+
+            var dx = mouse.x - p.x;
+            var dy = mouse.y - p.y;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < MOUSE_RADIUS && dist > 0) {
+              var force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
+              p.vx -= (dx / dist) * force * 0.6;
+              p.vy -= (dy / dist) * force * 0.6;
+            }
+
+            p.vx *= 0.98;
+            p.vy *= 0.98;
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.x < 0) p.x = canvas.width;
+            if (p.x > canvas.width) p.x = 0;
+            if (p.y < 0) p.y = canvas.height;
+            if (p.y > canvas.height) p.y = 0;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(199, 82, 45, ' + p.alpha + ')';
+            ctx.fill();
+
+            for (var j = i + 1; j < particles.length; j++) {
+              var p2 = particles[j];
+              var lx = p.x - p2.x;
+              var ly = p.y - p2.y;
+              var ld = Math.sqrt(lx * lx + ly * ly);
+              if (ld < LINE_DIST) {
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = 'rgba(199, 82, 45, ' + (0.08 * (1 - ld / LINE_DIST)) + ')';
+                ctx.lineWidth = 0.6;
+                ctx.stroke();
+              }
+            }
+          }
+
+          raf = requestAnimationFrame(draw);
+        }
+
+        hero.addEventListener('mousemove', function(e) {
+          var rect = hero.getBoundingClientRect();
+          mouse.x = e.clientX - rect.left;
+          mouse.y = e.clientY - rect.top;
+        });
+
+        hero.addEventListener('mouseleave', function() {
+          mouse.x = -9999;
+          mouse.y = -9999;
+        });
+
+        var visObserver = new IntersectionObserver(function(entries) {
+          isVisible = entries[0].isIntersecting;
+        }, { threshold: 0 });
+        visObserver.observe(hero);
+
+        window.addEventListener('resize', function() {
+          resize();
+          createParticles();
+        });
+
+        resize();
+        createParticles();
+        draw();
+      })();
+
+      /* ───── EASTER EGG ───── */
+      console.log(
+        '%cHey there, curious developer! %c\n\nShakir Sadiq — Data Scientist, Engineer & Developer\nLike what you see? Let\'s connect: shakirsadiq24@gmail.com',
+        'font-size: 16px; font-weight: bold; color: #C7522D;',
+        'font-size: 12px; color: #5C5650;'
+      );
+
+    })();
+  </script>
 </body>
-
 </html>
